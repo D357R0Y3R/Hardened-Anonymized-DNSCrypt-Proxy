@@ -2,7 +2,7 @@
 
 pkgname=Hardened-Anonymized-DNSCrypt-Proxy
 _pkgname=dnscrypt-proxy
-pkgver=2.1.4.r31.g9b61b738
+pkgver=2.1.4.r36.g5b8e7d41
 pkgrel=1
 pkgdesc="Wipe Snoopers Out Of Your Networks"
 arch=(x86_64 x86_64_v3)
