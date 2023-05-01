@@ -42,6 +42,7 @@ post_install() {
 	echo -e "| Checking Hardened-Anonymized-DNSCrypt-Proxy Status |"
 	echo -e "------------------------------------------------------"
 	dnscrypt-proxy -config /etc/dnscrypt-proxy/dnscrypt-proxy.toml --show-certs
+	systemctl daemon-reload && systemctl restart --now dnscrypt-proxy -f
 	echo -e "--------------------------------------"
 	echo -e "| Hardened-Anonymized-DNSCrypt-Proxy |"
 	echo -e "|      Successfully Configured !     |"
