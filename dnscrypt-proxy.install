@@ -23,7 +23,7 @@ post_install() {
 	echo -e "ethernet.cloned-mac-address=random" &>>/etc/NetworkManager/NetworkManager.conf
 	echo -e "wifi.cloned-mac-address=random" &>>/etc/NetworkManager/NetworkManager.conf
 	echo -e "[connectivity]\n.set.enabled=false" &>>/var/lib/NetworkManager/NetworkManager-intern.conf
-	echo -e "nameserver 127.0.0.1\noptions edns0 single-request-reopen" &>/etc/resolv.conf && chattr +i /etc/resolv*
+	echo -e "nameserver 127.0.0.1\noptions edns0\noptions single-request-reopen" &>/etc/resolv.conf && chattr +i /etc/resolv*
 	echo -e "---------------------------------------------------------"
 	echo -e "| Generating Certificate For EncryptedClientHello (ECH) |"
 	echo -e "---------------------------------------------------------"
