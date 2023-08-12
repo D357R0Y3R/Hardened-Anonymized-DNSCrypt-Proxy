@@ -2,7 +2,7 @@
 
 pkgname=Hardened-Anonymized-DNSCrypt-Proxy
 _pkgname=dnscrypt-proxy
-pkgver=2.1.4.r63.g7cc5a051
+pkgver=2.1.5.r0.g1b65fe62
 pkgrel=1
 pkgdesc="Wipe Snoopers Out Of Your Networks"
 arch=('x86_64' 'x86_64_v3')
@@ -14,6 +14,8 @@ optdepends=('python-urllib3: for generate-domains-blocklist')
 provides=(dnscrypt-proxy)
 conflicts=(dnscrypt-proxy)
 install=$_pkgname.install
+# NOTE: disabled until gcc is fixed to produce reproducible bytecode for go
+options=(!lto)
 source=(
 	git+https://github.com/dnscrypt/$_pkgname.git
 	$_pkgname.toml
