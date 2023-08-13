@@ -697,16 +697,16 @@ allowed_ips_file = 'allowed-ips.txt'
 ## If the `urls` property is missing, cache files and valid signatures
 ## must already be present. This doesn't prevent these cache files from
 ## expiring after `refresh_delay` hours.
-## Cache freshness is checked every 24 hours, so values for 'refresh_delay'
-## of less than 24 hours will have no effect.
-## A maximum delay of 168 hours (1 week) is imposed to ensure cache freshness.
+## `refreshed_delay` must be in the [24..168] interval.
+## The minimum delay of 24 hours (1 day) avoids unnecessary requests to servers.
+## The maximum delay of 168 hours (1 week) ensures cache freshness.
 
 [sources]
 
   ### An example of a remote source from https://github.com/DNSCrypt/dnscrypt-resolvers
 
   [sources.public-resolvers]
-    urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md', 'https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md', 'https://ipv6.download.dnscrypt.info/resolvers-list/v3/public-resolvers.md']
+    urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md', 'https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md']
     cache_file = 'public-resolvers.md'
     minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
     refresh_delay = 72
@@ -715,7 +715,7 @@ allowed_ips_file = 'allowed-ips.txt'
   ### Anonymized DNS relays
 
   [sources.relays]
-    urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/relays.md', 'https://download.dnscrypt.info/resolvers-list/v3/relays.md', 'https://ipv6.download.dnscrypt.info/resolvers-list/v3/relays.md']
+    urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/relays.md', 'https://download.dnscrypt.info/resolvers-list/v3/relays.md']
     cache_file = 'relays.md'
     minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
     refresh_delay = 72
@@ -724,13 +724,13 @@ allowed_ips_file = 'allowed-ips.txt'
   ### ODoH (Oblivious DoH) servers and relays
 
   # [sources.odoh-servers]
-  #   urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/odoh-servers.md', 'https://download.dnscrypt.info/resolvers-list/v3/odoh-servers.md', 'https://ipv6.download.dnscrypt.info/resolvers-list/v3/odoh-servers.md']
+  #   urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/odoh-servers.md', 'https://download.dnscrypt.info/resolvers-list/v3/odoh-servers.md']
   #   cache_file = 'odoh-servers.md'
   #   minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
   #   refresh_delay = 24
   #   prefix = ''
   # [sources.odoh-relays]
-  #   urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/odoh-relays.md', 'https://download.dnscrypt.info/resolvers-list/v3/odoh-relays.md', 'https://ipv6.download.dnscrypt.info/resolvers-list/v3/odoh-relays.md']
+  #   urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/odoh-relays.md', 'https://download.dnscrypt.info/resolvers-list/v3/odoh-relays.md']
   #   cache_file = 'odoh-relays.md'
   #   minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
   #   refresh_delay = 24
@@ -748,7 +748,7 @@ allowed_ips_file = 'allowed-ips.txt'
   ### This is a subset of the `public-resolvers` list, so enabling both is useless
 
   # [sources.parental-control]
-  #   urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/parental-control.md', 'https://download.dnscrypt.info/resolvers-list/v3/parental-control.md', 'https://ipv6.download.dnscrypt.info/resolvers-list/v3/parental-control.md']
+  #   urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/parental-control.md', 'https://download.dnscrypt.info/resolvers-list/v3/parental-control.md']
   #   cache_file = 'parental-control.md'
   #   minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
 
@@ -843,7 +843,7 @@ fragments_blocked = ['cisco', 'cisco-ipv6', 'cisco-familyshield', 'cisco-familys
     { server_name='meganerd', via=['anon-scaleway-ams', 'anon-serbica'] },
     { server_name='openinternet', via=['anon-cs-sea', 'anon-inconnu'] },
     { server_name='plan9dns-fl', via=['anon-cs-tx', 'anon-inconnu'] },
-    { server_name='plan9dns-mx', via=['anon-cs-tx2', 'anon-inconnu'] },
+    { server_name='plan9dns-mx', via=['anon-cs-tx', 'anon-inconnu'] },
     { server_name='plan9dns-nj', via=['anon-cs-nyc1', 'anon-inconnu'] },
     { server_name='pryv8boi', via=['anon-cs-dus1', 'anon-techsaviours.org'] },
     { server_name='sby-limotelu', via=['anon-cs-sydney', 'anon-saldns01-conoha-ipv4'] },
