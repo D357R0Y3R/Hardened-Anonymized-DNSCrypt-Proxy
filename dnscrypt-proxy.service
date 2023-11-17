@@ -1,6 +1,6 @@
 [Unit]
 Description=DNSCrypt-proxy client
-Documentation=https://github.com/jedisct1/dnscrypt-proxy/wiki
+Documentation=https://github.com/DNSCrypt/dnscrypt-proxy/wiki
 Wants=network-online.target nss-lookup.target
 Before=nss-lookup.target
 
@@ -30,8 +30,6 @@ RuntimeDirectory=dnscrypt-proxy
 StateDirectory=dnscrypt-proxy
 SystemCallArchitectures=native
 SystemCallFilter=@system-service
-SystemCallFilter=@resources @privileged
-SystemCallFilter=@chown
 
 [Install]
 WantedBy=multi-user.target
