@@ -2,7 +2,7 @@
 
 pkgname=Hardened-Anonymized-DNSCrypt-Proxy
 _pkgname=dnscrypt-proxy
-pkgver=2.1.5.r10.g79779cf7
+pkgver=2.1.5.r19.g0ba728b6
 pkgrel=1
 pkgdesc="Wipe Snoopers Out Of Your Networks"
 arch=('x86_64' 'x86_64_v3')
@@ -14,7 +14,7 @@ optdepends=('python-urllib3: for generate-domains-blocklist')
 provides=(dnscrypt-proxy)
 conflicts=(dnscrypt-proxy)
 install=$_pkgname.install
-# NOTE: disabled until gcc is fixed to produce reproducible bytecode for go
+# NOTE: LTO breaks reproducibility :(
 options=(!lto)
 source=(
 	git+https://github.com/dnscrypt/$_pkgname.git
@@ -22,8 +22,8 @@ source=(
 	$_pkgname.service
 )
 sha512sums=('SKIP'
-            'd271c52b6cdbe2da157d3242fb25beb83b2d996998c3a33e023782f58b6d0a6ea320afbb6a4f1ea9cdd5e2ed86d98d58bce42497809cb99fd23030de049986cd'
-            'a62fe2b5c8e194931a1c3948b262b0a4ab766c1b649431aabe2ec9e527abd23346fd21d1fc0e25783b9137d278d49256e50f9ca8ed456c59e36b48414607bda2')
+	'8312813afc18e88786a2611e5ad3a15f1c83cb84377cff31ea1e850da4141c7c6cf13f5cef43ed8bacffd4c553e7786f1e7e4fb52aefa623a59d8f59d9c46df7'
+	'50e6c878115c96e72f6118008e92871957a699d89bd0b85c80af45e6880a30b0832995e4718ab585b086049cc64e2b0759f8f4263ef814d74929933534403f92')
 
 pkgver() {
 	cd "$_pkgname"
@@ -36,8 +36,10 @@ build() {
 	export CGO_CFLAGS="$CFLAGS"
 	export CGO_CXXFLAGS="$CXXFLAGS"
 	export CGO_LDFLAGS="$LDFLAGS"
-	export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"
-	go build
+	export GOPATH="$srcdir"
+	export GOFLAGS="-buildmode=pie -mod=readonly -modcacherw"
+
+	go build -ldflags "-compressdwarf=false -linkmode external" .
 }
 
 package() {

@@ -752,6 +752,15 @@ allowed_ips_file = 'allowed-ips.txt'
   #   cache_file = 'parental-control.md'
   #   minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
 
+  ### dnscry.pt servers - See https://www.dnscry.pt
+
+  #  [sources.dnscry-pt-resolvers]
+  #    urls = ["https://www.dnscry.pt/resolvers.md"]
+  #    minisign_key = "RWQM31Nwkqh01x88SvrBL8djp1NH56Rb4mKLHz16K7qsXgEomnDv6ziQ"
+  #    cache_file = "dnscry.pt-resolvers.md"
+  #    refresh_delay = 72
+  #    prefix = "dnscry.pt-"
+
 
 
 #########################################
@@ -846,7 +855,7 @@ fragments_blocked = ['cisco', 'cisco-ipv6', 'cisco-familyshield', 'cisco-familys
     { server_name='plan9dns-mx', via=['anon-cs-tx', 'anon-inconnu'] },
     { server_name='plan9dns-nj', via=['anon-cs-nyc1', 'anon-inconnu'] },
     { server_name='pryv8boi', via=['anon-cs-dus1', 'anon-techsaviours.org'] },
-    { server_name='sby-limotelu', via=['anon-cs-sydney', 'anon-saldns01-conoha-ipv4'] },
+    { server_name='sby-limotelu', via=['anon-cs-sydney', 'anon-tiarap'] },
     { server_name='scaleway-ams', via=['anon-meganerd', 'anon-serbica'] },
     { server_name='scaleway-fr', via=['anon-cs-fr', 'anon-dnscrypt.uk-ipv4'] },
     { server_name='serbica', via=['anon-cs-nl', 'anon-scaleway-ams'] },
