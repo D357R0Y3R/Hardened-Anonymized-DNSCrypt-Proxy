@@ -2,7 +2,7 @@
 
 pkgname=Hardened-Anonymized-DNSCrypt-Proxy
 _pkgname=dnscrypt-proxy
-pkgver=2.1.5.r19.g0ba728b6
+pkgver=2.1.5.r21.g42b6ae90
 pkgrel=1
 pkgdesc="Wipe Snoopers Out Of Your Networks"
 arch=('x86_64' 'x86_64_v3')
@@ -22,7 +22,7 @@ source=(
 	$_pkgname.service
 )
 sha512sums=('SKIP'
-            '583977d0d2ffeecc78439d073f2da61edcfb46211d4cc99c4c7d312349f12e3cc570afc2847d86445d75f87b16c99463cc59c5b4f05f6a09afc3c3e598eea16d'
+            '6422bb7dd8aa173f828084c0c374e2ce9fe9ceb4fd0a8d9b32b741e843bf46266b1a097d9b0c3a1312a9ab754e651e709490ad792a9521974afb63cb3e069871'
             '50e6c878115c96e72f6118008e92871957a699d89bd0b85c80af45e6880a30b0832995e4718ab585b086049cc64e2b0759f8f4263ef814d74929933534403f92')
 
 pkgver() {
