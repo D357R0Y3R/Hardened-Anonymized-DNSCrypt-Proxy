@@ -29,7 +29,7 @@
 ##
 ## Remove the leading # first to enable this; lines starting with # are ignored.
 
-server_names = ['dnscrypt.eu-nl','dnscrypt.eu-dk','scaleway-fr','scaleway-ams','dnswarden-dc1','dnswarden-dc2','dnswarden-uncensor-dc-swiss','meganerd','dnscrypt.be','dnscrypt.pl','serbica','techsaviours.org-dnscrypt','v.dnscrypt.uk-ipv4']
+server_names = ['scaleway-ams', 'scaleway-fr', 'dnscrypt.eu-nl', 'dnscrypt.eu-dk', 'meganerd', 'dnswarden-dc1', 'dnswarden-dc2', 'dnswarden-uncensor-dc-swiss', 'dnscrypt.be', 'dnscrypt.pl', 'serbica', 'techsaviours.org-dnscrypt', 'v.dnscrypt.uk-ipv4', 'dnscrypt.ca-1', 'dnscrypt.ca-2', 'dnscrypt.uk-ipv4']
 
 
 ## List of local addresses and ports to listen to. Can be IPv4 and/or IPv6.
@@ -838,19 +838,22 @@ fragments_blocked = ['cisco', 'cisco-ipv6', 'cisco-familyshield', 'cisco-familys
 ## in different countries, operated by different entities, on distinct ISPs...)
 
  routes = [
+    { server_name='scaleway-ams', via=['anon-meganerd', 'anon-serbica'] },
+    { server_name='scaleway-fr', via=['anon-cs-fr', 'anon-dnscrypt.uk-ipv4'] },
     { server_name='dnscrypt.eu-nl', via=['anon-cs-nl', 'anon-scaleway-ams'] },
     { server_name='dnscrypt.eu-dk', via=['anon-cs-dk', 'anon-scaleway-ams'] },
-    { server_name='scaleway-fr', via=['anon-cs-fr', 'anon-dnscrypt.uk-ipv4'] },
-    { server_name='scaleway-ams', via=['anon-meganerd', 'anon-serbica'] },
+    { server_name='meganerd', via=['anon-scaleway-ams', 'anon-serbica'] },
     { server_name='dnswarden-dc1', via=['anon-cs-fr', 'anon-scaleway-ams'] },
     { server_name='dnswarden-dc2', via=['anon-cs-fr', 'anon-scaleway-ams'] },
     { server_name='dnswarden-uncensor-dc-swiss', via=['anon-cs-fr', 'anon-kama'] },
-    { server_name='meganerd', via=['anon-scaleway-ams', 'anon-serbica'] },
     { server_name='dnscrypt.be', via=['anon-cs-belgium', 'anon-serbica'] },
     { server_name='dnscrypt.pl', via=['anon-cs-poland', 'anon-techsaviours.org'] },
     { server_name='serbica', via=['anon-cs-nl', 'anon-scaleway-ams'] },
     { server_name='techsaviours.org-dnscrypt', via=['anon-cs-berlin', 'anon-dnswarden-swiss'] },
-    { server_name='v.dnscrypt.uk-ipv4', via=['anon-cs-london', 'anon-scaleway'] }
+    { server_name='v.dnscrypt.uk-ipv4', via=['anon-cs-london', 'anon-scaleway'] },
+    { server_name='dnscrypt.ca-1', via=['anon-cs-ca', 'anon-scaleway-ams'] },
+    { server_name='dnscrypt.ca-2', via=['anon-cs-ca', 'anon-scaleway-ams'] },
+    { server_name='dnscrypt.uk-ipv4', via=['anon-cs-london', 'anon-scaleway'] }
  ]
 
 
