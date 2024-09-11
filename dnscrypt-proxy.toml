@@ -39,7 +39,7 @@ server_names = ['dnscrypt.eu-nl','dnscrypt.eu-dk','scaleway-fr','scaleway-ams','
 ## To listen to all IPv4 addresses, use `listen_addresses = ['0.0.0.0:53']`
 ## To listen to all IPv4+IPv6 addresses, use `listen_addresses = ['[::]:53']`
 
-listen_addresses = ['127.0.0.1:5354']
+listen_addresses = ['127.0.0.1:53']
 
 
 ## Maximum number of simultaneous client connections to accept
@@ -458,7 +458,7 @@ cache_neg_max_ttl = 600
 
 ## Addresses that the local DoH server should listen to
 
-# listen_addresses = ['127.0.0.1:3000']
+listen_addresses = ['127.0.0.1:3000']
 
 
 ## Path of the DoH URL. This is not a file, but the part after the hostname
@@ -466,7 +466,7 @@ cache_neg_max_ttl = 600
 ## For each `listen_address` the complete URL to access the server will be:
 ## `https://<listen_address><path>` (ex: `https://127.0.0.1/dns-query`)
 
-# path = '/dns-query'
+path = '/dns-query'
 
 
 ## Certificate file and key - Note that the certificate has to be trusted.
@@ -475,8 +475,8 @@ cache_neg_max_ttl = 600
 ## openssl req -x509 -nodes -newkey ec:ECPARAM.pem -subj "/C=XZ/L=own PC/O=localhost/CN=localhost/" -days 5000 -sha256 -keyout localhost.pem -out localhost.pem
 ## See the documentation (wiki) for more information.
 
-# cert_file = 'localhost.pem'
-# cert_key_file = 'localhost.pem'
+cert_file = 'localhost.pem'
+cert_key_file = 'localhost.pem'
 
 
 
