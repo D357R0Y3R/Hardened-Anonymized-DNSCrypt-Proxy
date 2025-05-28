@@ -1,0 +1,23 @@
+pkgbase = Hardened-Anonymized-DNSCrypt-Proxy
+	pkgdesc = Wipe Snoopers Out Of Your Networks
+	pkgver = 2.1.12.r3.g00914a4e
+	pkgrel = 1
+	url = https://github.com/D357R0Y3R/Hardened-Anonymized-DNSCrypt-Proxy
+	install = dnscrypt-proxy.install
+	arch = x86_64
+	license = ISC
+	makedepends = git
+	makedepends = go
+	depends = glibc
+	optdepends = python-urllib3: for generate-domains-blocklist
+	provides = dnscrypt-proxy
+	conflicts = dnscrypt-proxy
+	options = !lto
+	source = git+https://github.com/dnscrypt/dnscrypt-proxy.git
+	source = dnscrypt-proxy.toml
+	source = dnscrypt-proxy.service
+	sha512sums = SKIP
+	sha512sums = b2df56b0421905ec994b1b38c6ebc668be6b9881c6a0800125f1df8404feea4be60d2aeaaf25ba64f8dce91e1038851de06884998b29edf7b2185c7b348bb5dd
+	sha512sums = 50e6c878115c96e72f6118008e92871957a699d89bd0b85c80af45e6880a30b0832995e4718ab585b086049cc64e2b0759f8f4263ef814d74929933534403f92
+
+pkgname = Hardened-Anonymized-DNSCrypt-Proxy
