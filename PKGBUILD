@@ -2,7 +2,7 @@
 
 pkgname=Hardened-Anonymized-DNSCrypt-Proxy
 _pkgname=dnscrypt-proxy
-pkgver=2.1.12.r3.g00914a4e
+pkgver=2.1.12.r34.g08047ca8
 pkgrel=1
 pkgdesc="Wipe Snoopers Out Of Your Networks"
 arch=(x86_64)
@@ -37,7 +37,7 @@ build() {
   export CGO_CXXFLAGS="$CXXFLAGS"
   export CGO_LDFLAGS="$LDFLAGS"
   export GOPATH="$srcdir"
-  export GOFLAGS="-buildmode=pie -mod=mod -modcacherw"
+  export GOFLAGS="-buildmode=pie -mod=readonly -modcacherw"
 
   go build -ldflags "-compressdwarf=false -linkmode external" .
 }
