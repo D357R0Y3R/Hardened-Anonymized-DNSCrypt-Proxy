@@ -1,6 +1,6 @@
 pkgbase = Hardened-Anonymized-DNSCrypt-Proxy
 	pkgdesc = Wipe Snoopers Out Of Your Networks
-	pkgver = 2.1.12.r3.g00914a4e
+	pkgver = 2.1.12.r34.g08047ca8
 	pkgrel = 1
 	url = https://github.com/D357R0Y3R/Hardened-Anonymized-DNSCrypt-Proxy
 	install = dnscrypt-proxy.install
