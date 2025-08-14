@@ -1,0 +1,3 @@
+[dnscrypt-proxy]
+source = "git"
+git = "https://github.com/DNSCrypt/dnscrypt-proxy.git"
