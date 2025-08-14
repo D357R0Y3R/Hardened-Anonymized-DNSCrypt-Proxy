@@ -59,7 +59,7 @@ But For Linux, People Find It Hard To Configure DNSCrypt-Proxy Manually. But I W
     git clone https://github.com/D357R0Y3R/Hardened-Anonymized-DNSCrypt-Proxy
     cd Hardened-Anonymized-DNSCrypt-Proxy
     makepkg -Ccrfs --noconfirm
-    sudo pacman -U *zst
+    sudo pacman -U *.zst
 
 
 ## Deconfigure [Copy-Paste]
