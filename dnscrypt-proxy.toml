@@ -147,7 +147,7 @@ http3_probe = false
 ## Don't increase it too much. 10000 is the highest reasonable value.
 ## A timeout below 5000 is not recommended.
 
-timeout = 1000
+timeout = 5000
 
 
 ## Keepalive for HTTP (HTTPS, HTTP/2, HTTP/3) queries, in seconds
@@ -193,6 +193,19 @@ blocked_query_response = 'refused'
 
 # lb_estimator = true
 
+## Dynamically reduce query timeout as the number of concurrent connections
+## approaches max_clients to prevent overload. Value must be between 0.0 and 1.0.
+## 0.0 = no reduction, 1.0 = maximum reduction.
+## Uses a quartic curve to keep timeout high at low load and reduce sharply near limit.
+## For example, with timeout=5000ms, max_clients=250, and timeout_load_reduction=0.75:
+## - At 125 connections (50% load): timeout remains ~4765ms (95.3%)
+## - At 187 connections (75% load): timeout reduces to ~3826ms (76.5%)
+## - At 225 connections (90% load): timeout reduces to ~2539ms (50.8%)
+## - At 250 connections (100% load): timeout reduces to ~1250ms (25%)
+## This helps maintain responsiveness under high load by failing fast.
+
+# timeout_load_reduction = 0.75
+
 ## Set to `true` to enable hot reloading of configuration files (like allowed-names.txt,
 ## blocked-names.txt, etc.) when they are modified. This can increase CPU and memory usage.
 ## Default is `false` (hot reloading is disabled).
@@ -206,7 +219,7 @@ blocked_query_response = 'refused'
 
 ## Log level (0-6, default: 2 - 0 is very verbose, 6 only contains fatal errors)
 
-# log_level = 0
+# log_level = 2
 
 
 ## Log file for the application, as an alternative to sending logs to
@@ -333,7 +346,7 @@ dnscrypt_ephemeral_keys = true
 ## not be sent there. If you're using DNSCrypt or Anonymized DNS and your
 ## lists are up to date, these resolvers will not even be used.
 
-bootstrap_resolvers = ['45.11.45.11:53']
+bootstrap_resolvers = ['9.9.9.9:53']
 
 
 ## When internal DNS resolution is required, for example to retrieve
@@ -346,7 +359,7 @@ bootstrap_resolvers = ['45.11.45.11:53']
 ##   to the system DNS
 ##
 ## (*) this is incompatible with systemd sockets.
-## `listen_addrs` must not be empty.
+## `listen_addresses` must not be empty.
 
 ignore_system_dns = true
 
@@ -369,7 +382,7 @@ netprobe_timeout = -1
 ## On other operating systems, the connection will be initialized
 ## but nothing will be sent at all.
 
-netprobe_address = '45.11.45.11:53'
+netprobe_address = '9.9.9.9:53'
 
 
 ## Offline mode - Do not use any remote encrypted servers.
@@ -597,7 +610,7 @@ format = 'tsv'
 
 ## Path to the file of blocking rules (absolute, or relative to the same directory as the config file)
 
-blocked_names_file = 'blocked-names.txt'
+# blocked_names_file = 'blocked-names.txt'
 
 
 ## Optional path to a file logging blocked queries
@@ -624,7 +637,7 @@ blocked_names_file = 'blocked-names.txt'
 
 ## Path to the file of blocking rules (absolute, or relative to the same directory as the config file)
 
-blocked_ips_file = 'blocked-ips.txt'
+# blocked_ips_file = 'blocked-ips.txt'
 
 
 ## Optional path to a file logging blocked queries
@@ -651,7 +664,7 @@ blocked_ips_file = 'blocked-ips.txt'
 
 ## Path to the file of allow list rules (absolute, or relative to the same directory as the config file)
 
-allowed_names_file = 'allowed-names.txt'
+# allowed_names_file = 'allowed-names.txt'
 
 
 ## Optional path to a file logging allowed queries
@@ -678,7 +691,7 @@ allowed_names_file = 'allowed-names.txt'
 
 ## Path to the file of allowed ip rules (absolute, or relative to the same directory as the config file)
 
-allowed_ips_file = 'allowed-ips.txt'
+# allowed_ips_file = 'allowed-ips.txt'
 
 
 ## Optional path to a file logging allowed queries
@@ -790,7 +803,7 @@ prefix = ''
 ### Quad9
 
 # [sources.quad9-resolvers]
-#   urls = ['https://www.quad9.net/quad9-resolvers.md']
+#   urls = ['https://quad9.net/dnscrypt/quad9-resolvers.md']
 #   minisign_key = 'RWQBphd2+f6eiAqBsvDZEBXBGHQBJfeG6G+wJPPKxCZMoEQYpmoysKUN'
 #   cache_file = 'quad9-resolvers.md'
 #   prefix = 'quad9-'
@@ -851,7 +864,7 @@ fragments_blocked = [
 
 [doh_client_x509_auth]
 
-## Use a X509 certificate to authenticate yourself when connecting to DoH servers.
+## Use an X509 certificate to authenticate yourself when connecting to DoH servers.
 ## This is only useful if you are operating your own, private DoH server(s).
 ## 'creds' maps servers to certificates, and supports multiple entries.
 ## If you are not using the standard root CA, an optional "root_ca"
@@ -967,6 +980,37 @@ direct_cert_fallback = false
 ## IMPORTANT: Default resolvers listed below support Well-Known Prefix 64:ff9b::/96 only.
 
 # resolver = ['[2606:4700:4700::64]:53', '[2001:4860:4860::64]:53']
+
+
+###############################################################################
+#                           IP Encryption                                      #
+###############################################################################
+
+[ip_encryption]
+
+## Encrypt client IP addresses in plugin logs using IPCrypt
+## This provides privacy for client IP addresses while maintaining
+## the ability to distinguish between different clients in logs
+
+## Encryption algorithm (default: "none")
+## - "none": No encryption (default)
+## - "ipcrypt-deterministic": Deterministic encryption (same IP always encrypts to same value) - requires 16-byte key
+## - "ipcrypt-nd": Non-deterministic encryption with 8-byte tweak - requires 16-byte key
+## - "ipcrypt-ndx": Non-deterministic encryption with 16-byte tweak (extended) - requires 32-byte key
+## - "ipcrypt-pfx": Prefix-preserving encryption (preserves network prefix relationships) - requires 32-byte key
+
+algorithm = "none"
+
+## Encryption key in hexadecimal format (required if algorithm is not "none")
+## Key size depends on algorithm:
+## - ipcrypt-deterministic: 32 hex chars (16 bytes) - Generate with: openssl rand -hex 16
+## - ipcrypt-nd: 32 hex chars (16 bytes) - Generate with: openssl rand -hex 16
+## - ipcrypt-ndx: 64 hex chars (32 bytes) - Generate with: openssl rand -hex 32
+## Example for deterministic/nd: key = "1234567890abcdef1234567890abcdef"
+## Example for ndx: key = "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+## IMPORTANT: Keep this key secret
+
+key = ""
 
 
 ###############################################################################

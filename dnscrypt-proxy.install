@@ -1,8 +1,8 @@
 post_install() {
-  echo -e "--------------------------------------"
-  echo -e "| Hardened-Anonymized-DNSCrypt-Proxy |"
-  echo -e "| Wipe Snoopers Out Of Your Networks |"
-  echo -e "--------------------------------------"
+  echo -e "--------------------------------------------------"
+  echo -e "|       Hardened-Anonymized-DNSCrypt-Proxy       |"
+  echo -e "| Eradicate Surveillance From Your Network Stack |"
+  echo -e "--------------------------------------------------"
   echo -e "--------------------------------------"
   echo -e "| Disabling SystemD-Resolved Service |"
   echo -e "--------------------------------------"
@@ -50,10 +50,10 @@ post_install() {
 }
 
 pre_remove() {
-  echo -e "--------------------------------------"
-  echo -e "| Hardened-Anonymized-DNSCrypt-Proxy |"
-  echo -e "| Wipe Snoopers Out Of Your Networks |"
-  echo -e "--------------------------------------"
+  echo -e "--------------------------------------------------"
+  echo -e "|       Hardened-Anonymized-DNSCrypt-Proxy       |"
+  echo -e "| Eradicate Surveillance From Your Network Stack |"
+  echo -e "--------------------------------------------------"
   echo -e "------------------------------------------------"
   echo -e "| Disabling Hardened-Anonymized-DNSCrypt-Proxy |"
   echo -e "------------------------------------------------"
@@ -82,10 +82,10 @@ pre_remove() {
 }
 
 post_upgrade() {
-  echo -e "--------------------------------------"
-  echo -e "| Hardened-Anonymized-DNSCrypt-Proxy |"
-  echo -e "| Wipe Snoopers Out Of Your Networks |"
-  echo -e "--------------------------------------"
+  echo -e "--------------------------------------------------"
+  echo -e "|       Hardened-Anonymized-DNSCrypt-Proxy       |"
+  echo -e "| Eradicate Surveillance From Your Network Stack |"
+  echo -e "--------------------------------------------------"
   echo -e "-------------------------------------------------"
   echo -e "| Restarting Hardened-Anonymized-DNSCrypt-Proxy |"
   echo -e "-------------------------------------------------"

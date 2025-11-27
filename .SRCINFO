@@ -1,6 +1,6 @@
 pkgbase = Hardened-Anonymized-DNSCrypt-Proxy
-	pkgdesc = Wipe Snoopers Out Of Your Networks
-	pkgver = 2.1.13.r1.g9b75d0c6
+	pkgdesc = Eradicate Surveillance From Your Network Stack
+	pkgver = 2.1.14.r107.g6cb6faf8
 	pkgrel = 1
 	url = https://github.com/D357R0Y3R/Hardened-Anonymized-DNSCrypt-Proxy
 	install = dnscrypt-proxy.install
@@ -17,7 +17,7 @@ pkgbase = Hardened-Anonymized-DNSCrypt-Proxy
 	source = dnscrypt-proxy.toml
 	source = dnscrypt-proxy.service
 	sha512sums = SKIP
-	sha512sums = b2df56b0421905ec994b1b38c6ebc668be6b9881c6a0800125f1df8404feea4be60d2aeaaf25ba64f8dce91e1038851de06884998b29edf7b2185c7b348bb5dd
+	sha512sums = e1cc2ca7b03b0814df5e218bf151e673a39edb374fdcd9b89d91728cfe0921524192aa7183cc486b969f79ebf05f373e084e2fb2ac17cadf4a81726cf943dc5f
 	sha512sums = 50e6c878115c96e72f6118008e92871957a699d89bd0b85c80af45e6880a30b0832995e4718ab585b086049cc64e2b0759f8f4263ef814d74929933534403f92
 
 pkgname = Hardened-Anonymized-DNSCrypt-Proxy
